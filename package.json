@@ -9,7 +9,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "keywords": [],
-  "author": "",
+  "author": "JakeyWasTaken",
   "license": "ISC",
   "types": "out/index.d.ts",
   "files": [
@@ -18,6 +18,10 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/howmanysmall/ceive-im-gizmo"
   },
   "devDependencies": {
     "@rbxts/compiler-types": "2.2.0-types.0",
