@@ -1,7 +1,7 @@
 {
   "name": "@rbxts/ceive-im-gizmo",
   "version": "1.0.0",
-  "description": "",
+  "description": "TypeScript types for CeiveImGizmo",
   "main": "out/init.lua",
   "scripts": {
     "build": "rbxtsc",

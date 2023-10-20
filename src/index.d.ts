@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+interface Styles extends WritableInstanceProperties<WireframeHandleAdornment> {
+	AlwaysOnTop: boolean;
+	Color3: Color3;
+	Transparency: number;
+}
+
+type BoxFunction = (transform: CFrame, size: Vector3, drawTriangles: boolean) => void;
+type Shape3dFunction = (transform: CFrame, radius: number, length: number, subdivisions: number) => void;
+
+interface Drawable<Signature extends (...args: any) => any = () => void> {
+	Draw(...drawParameters: Parameters<Signature>): void;
+}
+
 declare namespace Ceive {
-	interface Styles extends WritableInstanceProperties<WireframeHandleAdornment> {
-		AlwaysOnTop: boolean;
-		Color3: Color3;
-		Transparency: number;
-	}
-
-	type BoxFunction = (transform: CFrame, size: Vector3, drawTriangles: boolean) => void;
-	type Shape3dFunction = (transform: CFrame, radius: number, length: number, subdivisions: number) => void;
-
-	interface Drawable<Signature extends (...args: any) => any = () => void> {
-		Draw(...drawParameters: Parameters<Signature>): void;
-	}
-
 	export interface ObjectMesh {
 		/**
 		 * Faces of the mesh.
@@ -29,10 +29,6 @@ declare namespace Ceive {
 			readonly y: number;
 			readonly z: number;
 		}>;
-
-		readonly vn?: object;
-		readonly vp?: object;
-		readonly vt?: object;
 	}
 
 	export const Arrow: Drawable<
