@@ -40,7 +40,8 @@ function Gizmo:Draw(Transform: CFrame, Radius: number, Subdivisions: number, Ang
 		local XMagnitude = math.sin(math.rad(i)) * Radius
 		local YMagnitude = math.cos(math.rad(i)) * Radius
 
-		local VertexPosition = Transform.Position + ((Transform.UpVector * YMagnitude) + (Transform.RightVector * XMagnitude))
+		local VertexPosition = Transform.Position
+			+ ((Transform.UpVector * YMagnitude) + (Transform.RightVector * XMagnitude))
 
 		if PreviousVertex == nil then
 			PreviousVertex = VertexPosition
@@ -58,7 +59,8 @@ function Gizmo:Draw(Transform: CFrame, Radius: number, Subdivisions: number, Ang
 		local XMagnitude = math.sin(math.rad(Angle)) * Radius
 		local YMagnitude = math.cos(math.rad(Angle)) * Radius
 
-		local VertexPosition = Transform.Position + ((Transform.UpVector * YMagnitude) + (Transform.RightVector * XMagnitude))
+		local VertexPosition = Transform.Position
+			+ ((Transform.UpVector * YMagnitude) + (Transform.RightVector * XMagnitude))
 
 		Ceive.Ray:Draw(PreviousVertex, VertexPosition)
 	end
@@ -104,7 +106,13 @@ function Gizmo:Update(PropertyTable)
 	Ceive.PushProperty("Transparency", PropertyTable.Transparency)
 	Ceive.PushProperty("Color3", PropertyTable.Color3)
 
-	self:Draw(PropertyTable.Transform, PropertyTable.Radius, PropertyTable.Subdivisions, PropertyTable.Angle, PropertyTable.ConnectToStart)
+	self:Draw(
+		PropertyTable.Transform,
+		PropertyTable.Radius,
+		PropertyTable.Subdivisions,
+		PropertyTable.Angle,
+		PropertyTable.ConnectToStart
+	)
 end
 
 return Gizmo

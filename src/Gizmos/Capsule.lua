@@ -57,8 +57,20 @@ function Gizmo:Draw(Transform: CFrame, Radius: number, Length: number, Subdivisi
 
 		Ceive.Ray:Draw(TopVertexPosition, BottomVertexPosition)
 
-		Ceive.Circle:Draw(CFrame.new(TopOfCylinder.Position) * Transform.Rotation * CFrame.Angles(0, math.rad(i), 0), Radius, Subdivisions / 2, 90, false)
-		Ceive.Circle:Draw(CFrame.new(BottomOfCylinder.Position) * Transform.Rotation * CFrame.Angles(Rad180D, math.rad(i), 0), Radius, Subdivisions / 2, 90, false)
+		Ceive.Circle:Draw(
+			CFrame.new(TopOfCylinder.Position) * Transform.Rotation * CFrame.Angles(0, math.rad(i), 0),
+			Radius,
+			Subdivisions / 2,
+			90,
+			false
+		)
+		Ceive.Circle:Draw(
+			CFrame.new(BottomOfCylinder.Position) * Transform.Rotation * CFrame.Angles(Rad180D, math.rad(i), 0),
+			Radius,
+			Subdivisions / 2,
+			90,
+			false
+		)
 
 		if not LastTop then
 			LastTop = TopVertexPosition

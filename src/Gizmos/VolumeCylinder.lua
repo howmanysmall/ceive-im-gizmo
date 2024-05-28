@@ -49,6 +49,7 @@ function Gizmo:Draw(Transform: CFrame, Radius: number, Length: number, InnerRadi
 	Ceive.ActiveInstances += 1
 
 	self.Register(Cylinder)
+	self.Ceive.ScheduleCleaning()
 end
 
 --- @within VolumeCylinder
@@ -85,7 +86,13 @@ function Gizmo:Update(PropertyTable)
 	Ceive.PushProperty("Transparency", PropertyTable.Transparency)
 	Ceive.PushProperty("Color3", PropertyTable.Color3)
 
-	self:Draw(PropertyTable.Transform, PropertyTable.Radius, PropertyTable.Length, PropertyTable.InnerRadius, PropertyTable.Angle)
+	self:Draw(
+		PropertyTable.Transform,
+		PropertyTable.Radius,
+		PropertyTable.Length,
+		PropertyTable.InnerRadius,
+		PropertyTable.Angle
+	)
 end
 
 return Gizmo

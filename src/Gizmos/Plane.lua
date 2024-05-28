@@ -27,9 +27,9 @@ function Gizmo:Draw(Position: Vector3, Normal: Vector3, Size: Vector3)
 		return
 	end
 
-    Size *= Vector3.new(1, 1, 0)
+	Size *= Vector3.new(1, 1, 0)
 
-    local Transform = CFrame.lookAt(Position, Position + Normal)
+	local Transform = CFrame.lookAt(Position, Position + Normal)
 
 	local Uv = Transform.UpVector
 	local Rv = Transform.RightVector
@@ -67,7 +67,7 @@ function Gizmo:Create(Position: Vector3, Normal: Vector3, Size: Vector3)
 	local PropertyTable = {
 		Position = Position,
 		Normal = Normal,
-        Size = Size,
+		Size = Size,
 		AlwaysOnTop = self.Propertys.AlwaysOnTop,
 		Transparency = self.Propertys.Transparency,
 		Color3 = self.Propertys.Color3,
