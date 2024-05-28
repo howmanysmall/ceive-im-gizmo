@@ -48,6 +48,7 @@ declare namespace Ceive {
 	export const Plane: Drawable<(position: Vector3, normal: Vector3, size: Vector3) => void>;
 	export const Ray: Drawable<(origin: Vector3, finish: Vector3) => void>;
 	export const Sphere: Drawable<(transform: CFrame, radius: number, subdivisions: number, angle: number) => void>;
+	export const Text: Drawable<(origin: Vector3, text: string, size?: number) => void>;
 	export const VolumeArrow: Drawable<
 		(
 			origin: Vector3,

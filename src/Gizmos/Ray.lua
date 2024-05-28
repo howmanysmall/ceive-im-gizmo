@@ -5,13 +5,13 @@ Gizmo.__index = Gizmo
 
 function Gizmo.Init(Ceive, Propertys, Request, Release, Retain)
 	local self = setmetatable({}, Gizmo)
-	
+
 	self.Ceive = Ceive
 	self.Propertys = Propertys
 	self.Request = Request
 	self.Release = Release
 	self.Retain = Retain
-	
+
 	return self
 end
 
@@ -21,19 +21,19 @@ end
 --- @param End Vector3
 function Gizmo:Draw(Origin: Vector3, End: Vector3)
 	local Ceive = self.Ceive
-	
+
 	if not Ceive.Enabled then
 		return
 	end
-	
+
 	if self.Propertys.AlwaysOnTop then
 		Ceive.AOTWireframeHandle:AddLine(Origin, End)
 	else
 		Ceive.WireframeHandle:AddLine(Origin, End)
 	end
-	
+
 	self.Ceive.ActiveRays += 1
-	
+
 	self.Ceive.ScheduleCleaning()
 end
 
@@ -52,19 +52,19 @@ function Gizmo:Create(Origin: Vector3, End: Vector3)
 		Enabled = true,
 		Destroy = false,
 	}
-	
+
 	self.Retain(self, PropertyTable)
-	
+
 	return PropertyTable
 end
 
 function Gizmo:Update(PropertyTable)
 	local Ceive = self.Ceive
-	
+
 	Ceive.PushProperty("AlwaysOnTop", PropertyTable.AlwaysOnTop)
 	Ceive.PushProperty("Transparency", PropertyTable.Transparency)
 	Ceive.PushProperty("Color3", PropertyTable.Color3)
-	
+
 	self:Draw(PropertyTable.Origin, PropertyTable.End)
 end
 
