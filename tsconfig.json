@@ -2,26 +2,25 @@
 	"compilerOptions": {
 		// required
 		"allowSyntheticDefaultImports": true,
+		"declaration": true,
 		"downlevelIteration": true,
+		"experimentalDecorators": true,
+		"forceConsistentCasingInFileNames": true,
+		"incremental": true,
 		"jsx": "react",
 		"jsxFactory": "Roact.createElement",
 		"jsxFragmentFactory": "Roact.createFragment",
 		"module": "commonjs",
+		"moduleDetection": "force",
 		"moduleResolution": "Node",
 		"noLib": true,
+		"outDir": "out",
 		"resolveJsonModule": true,
-		"experimentalDecorators": true,
-		"forceConsistentCasingInFileNames": true,
-		"moduleDetection": "force",
-		"strict": true,
-		"target": "ESNext",
-		"typeRoots": ["node_modules/@rbxts"],
-
 		// configurable
 		"rootDir": "src",
-		"outDir": "out",
-		"incremental": true,
+		"strict": true,
+		"target": "ESNext",
 		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",
-		"declaration": true
-	}
+		"typeRoots": ["node_modules/@rbxts"],
+	},
 }

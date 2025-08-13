@@ -1,39 +1,37 @@
 {
-  "name": "@rbxts/ceive-im-gizmo",
-  "version": "3.2.0-ts.0",
-  "description": "TypeScript types for CeiveImGizmo",
-  "main": "out/init.lua",
-  "scripts": {
-    "build": "rbxtsc",
-    "watch": "rbxtsc -w",
-    "prepublishOnly": "pnpm run build"
-  },
-  "keywords": [],
-  "author": "JakeyWasTaken",
-  "license": "ISC",
-  "types": "out/index.d.ts",
-  "files": [
-    "out",
-    "!**/*.tsbuildinfo"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/howmanysmall/ceive-im-gizmo"
-  },
-  "devDependencies": {
-    "@rbxts/compiler-types": "2.2.0-types.0",
-    "@rbxts/types": "^1.0.724",
-    "@typescript-eslint/eslint-plugin": "^6.8.0",
-    "@typescript-eslint/parser": "^6.8.0",
-    "eslint": "^8.51.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-roblox-ts": "^0.0.36",
-    "prettier": "^3.0.3",
-    "roblox-ts": "2.2.0",
-    "typescript": "^5.2.2"
-  }
+	"author": "JakeyWasTaken",
+	"description": "TypeScript types for CeiveImGizmo",
+	"devDependencies": {
+		"@biomejs/biome": "^2.1.4",
+		"@rbxts/compiler-types": "2.2.0-types.0",
+		"@rbxts/types": "^1.0.724",
+		"@typescript-eslint/eslint-plugin": "^6.8.0",
+		"@typescript-eslint/parser": "^6.8.0",
+		"eslint": "^8.51.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-prettier": "^5.0.1",
+		"eslint-plugin-roblox-ts": "^0.0.36",
+		"prettier": "^3.0.3",
+		"roblox-ts": "2.2.0",
+		"typescript": "^5.2.2"
+	},
+	"files": ["out", "!**/*.tsbuildinfo"],
+	"keywords": [],
+	"license": "ISC",
+	"main": "out/init.lua",
+	"name": "@rbxts/ceive-im-gizmo",
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/howmanysmall/ceive-im-gizmo"
+	},
+	"scripts": {
+		"build": "rbxtsc",
+		"prepublishOnly": "pnpm run build",
+		"watch": "rbxtsc -w"
+	},
+	"types": "out/index.d.ts",
+	"version": "3.6.0-ts.0"
 }

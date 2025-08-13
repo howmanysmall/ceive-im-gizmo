@@ -1,14 +1,23 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"files.eol": "\n",
 	"[typescript]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+		"editor.defaultFormatter": "biomejs.biome",
 		"editor.formatOnSave": true
 	},
 	"[typescriptreact]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+		"editor.defaultFormatter": "biomejs.biome",
 		"editor.formatOnSave": true
 	},
+	"editor.acceptSuggestionOnEnter": "on",
+	"editor.codeActionsOnSave": {
+		"source.addMissingImports": "explicit",
+		"source.addMissingImports.ts": "explicit",
+		"source.biome": "explicit",
+		"source.fixAll.biome": "explicit",
+		"source.organizeImports": "never",
+		"source.removeUnusedImports": "explicit"
+	},
+	"eslint.format.enable": true,
 	"eslint.run": "onType",
-	"eslint.format.enable": true
+	"files.eol": "\n",
+	"typescript.tsdk": "node_modules/typescript/lib"
 }
