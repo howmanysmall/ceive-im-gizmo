@@ -68,6 +68,7 @@
 	},
 
 	"javascript": {
+		"assist": { "enabled": true },
 		"formatter": {
 			"arrowParentheses": "always",
 			"attributePosition": "auto",
@@ -85,13 +86,13 @@
 			"semicolons": "always",
 			"trailingCommas": "all"
 		},
-		"globals": ["Bun", "$range"],
+		"globals": [],
 		"linter": { "enabled": true }
 	},
 
 	"linter": {
 		"enabled": true,
-		"includes": ["**"],
+		"includes": ["src/**"],
 		"rules": {
 			"a11y": { "recommended": true },
 			"complexity": {
@@ -142,7 +143,7 @@
 			"style": {
 				"noEnum": "off",
 				"noInferrableTypes": "error",
-				"noNamespace": "error",
+				"noNamespace": "off",
 				"noNegationElse": "off",
 				"noNonNullAssertion": "off",
 				"noParameterAssign": "off",

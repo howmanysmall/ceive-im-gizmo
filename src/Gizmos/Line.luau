@@ -27,9 +27,9 @@ function Gizmo:Draw(Transform: CFrame, Length: number)
 	end
 
 	local Origin = Transform.Position + (Transform.LookVector * (-Length / 2))
-	local End = Transform.Position + (Transform.LookVector * (Length / 2))
+    local End = Transform.Position + (Transform.LookVector * (Length / 2))
 
-	Ceive.Ray:Draw(Origin, End)
+    Ceive.Ray:Draw(Origin, End)
 end
 
 --- @within Line

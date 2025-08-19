@@ -86,13 +86,7 @@ function Gizmo:Update(PropertyTable)
 	Ceive.PushProperty("Transparency", PropertyTable.Transparency)
 	Ceive.PushProperty("Color3", PropertyTable.Color3)
 
-	self:Draw(
-		PropertyTable.Transform,
-		PropertyTable.Radius,
-		PropertyTable.Length,
-		PropertyTable.InnerRadius,
-		PropertyTable.Angle
-	)
+	self:Draw(PropertyTable.Transform, PropertyTable.Radius, PropertyTable.Length, PropertyTable.InnerRadius, PropertyTable.Angle)
 end
 
 return Gizmo

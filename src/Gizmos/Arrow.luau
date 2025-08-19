@@ -15,6 +15,7 @@ function Gizmo.Init(Ceive, Propertys, Request, Release, Retain)
 	return self
 end
 
+
 --- @within Arrow
 --- @function Draw
 --- @param Origin Vector3
@@ -69,13 +70,7 @@ function Gizmo:Update(PropertyTable)
 	Ceive.PushProperty("Transparency", PropertyTable.Transparency)
 	Ceive.PushProperty("Color3", PropertyTable.Color3)
 
-	self:Draw(
-		PropertyTable.Origin,
-		PropertyTable.End,
-		PropertyTable.Radius,
-		PropertyTable.Length,
-		PropertyTable.Subdivisions
-	)
+	self:Draw(PropertyTable.Origin, PropertyTable.End, PropertyTable.Radius, PropertyTable.Length, PropertyTable.Subdivisions)
 end
 
 return Gizmo

@@ -1,7 +1,7 @@
+--- @class RoundedFrustum
+--- Draws a capsule with different end radii
 local Rad180D = math.rad(180)
 
---- @class Capsule
---- Renders a wireframe capsule.
 local Gizmo = {}
 Gizmo.__index = Gizmo
 
@@ -17,13 +17,14 @@ function Gizmo.Init(Ceive, Propertys, Request, Release, Retain)
 	return self
 end
 
---- @within Capsule
+--- @within RoundedFrustum
 --- @function Draw
 --- @param Transform CFrame
---- @param Radius number
+--- @param Radius0 number
+--- @param Radius1 number
 --- @param Length number
 --- @param Subdivisions number
-function Gizmo:Draw(Transform: CFrame, Radius: number, Length: number, Subdivisions: number)
+function Gizmo:Draw(Transform: CFrame, Radius0: number, Radius1: number, Length: number, Subdivisions: number)
 	local Ceive = self.Ceive
 
 	if not Ceive.Enabled then
@@ -48,17 +49,33 @@ function Gizmo:Draw(Transform: CFrame, Radius: number, Length: number, Subdivisi
 	local FirstBottom
 
 	for i = 0, 360, AnglePerChunk do
-		local XMagnitude = math.sin(math.rad(i)) * Radius
-		local YMagnitude = math.cos(math.rad(i)) * Radius
+		local XMagnitude0 = math.sin(math.rad(i)) * Radius0
+		local YMagnitude0 = math.cos(math.rad(i)) * Radius0
 
-		local VertexOffset = (Transform.LookVector * YMagnitude) + (Transform.RightVector * XMagnitude)
-		local TopVertexPosition = TopOfCylinder.Position + VertexOffset
-		local BottomVertexPosition = BottomOfCylinder.Position + VertexOffset
+		local XMagnitude1 = math.sin(math.rad(i)) * Radius1
+		local YMagnitude1 = math.cos(math.rad(i)) * Radius1
+
+		local TopVertexOffset = (Transform.LookVector * YMagnitude1) + (Transform.RightVector * XMagnitude1)
+		local BottomVertexOffset = (Transform.LookVector * YMagnitude0) + (Transform.RightVector * XMagnitude0)
+		local TopVertexPosition = TopOfCylinder.Position + TopVertexOffset
+		local BottomVertexPosition = BottomOfCylinder.Position + BottomVertexOffset
 
 		Ceive.Ray:Draw(TopVertexPosition, BottomVertexPosition)
 
-		Ceive.Circle:Draw(CFrame.new(TopOfCylinder.Position) * Transform.Rotation * CFrame.Angles(0, math.rad(i), 0), Radius, Subdivisions / 2, 90, false)
-		Ceive.Circle:Draw(CFrame.new(BottomOfCylinder.Position) * Transform.Rotation * CFrame.Angles(Rad180D, math.rad(i), 0), Radius, Subdivisions / 2, 90, false)
+		Ceive.Circle:Draw(
+			CFrame.new(TopOfCylinder.Position) * Transform.Rotation * CFrame.Angles(0, math.rad(i), 0),
+			Radius1,
+			Subdivisions / 2,
+			90,
+			false
+		)
+		Ceive.Circle:Draw(
+			CFrame.new(BottomOfCylinder.Position) * Transform.Rotation * CFrame.Angles(Rad180D, math.rad(i), 0),
+			Radius0,
+			Subdivisions / 2,
+			90,
+			false
+		)
 
 		if not LastTop then
 			LastTop = TopVertexPosition
@@ -81,17 +98,19 @@ function Gizmo:Draw(Transform: CFrame, Radius: number, Length: number, Subdivisi
 	Ceive.Ray:Draw(LastBottom, FirstBottom)
 end
 
---- @within Capsule
---- @function Create
+--- @within RoundedFrustum
+--- @function Draw
 --- @param Transform CFrame
---- @param Radius number
+--- @param Radius0 number
+--- @param Radius1 number
 --- @param Length number
 --- @param Subdivisions number
---- @return {Transform: CFrame, Radius: number, Length: number, Subdivisions: number, Color3: Color3, AlwaysOnTop: boolean, Transparency: number, Enabled: boolean, Destroy: boolean}
-function Gizmo:Create(Transform: CFrame, Radius: number, Length: number, Subdivisions: number)
+--- @return {Transform: CFrame, Radius0: number, Radius1: number, Length: number, Subdivisions: number, Color3: Color3, AlwaysOnTop: boolean, Transparency: number}
+function Gizmo:Create(Transform: CFrame, Radius0: number, Radius1: number, Length: number, Subdivisions: number)
 	local PropertyTable = {
 		Transform = Transform,
-		Radius = Radius,
+		Radius0 = Radius0,
+		Radius1 = Radius1,
 		Length = Length,
 		Subdivisions = Subdivisions,
 		AlwaysOnTop = self.Propertys.AlwaysOnTop,

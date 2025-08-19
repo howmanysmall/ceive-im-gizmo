@@ -1,19 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 interface Styles extends WritableInstanceProperties<WireframeHandleAdornment> {
 	AlwaysOnTop: boolean;
 	Color3: Color3;
 	Transparency: number;
 }
 
-type BoxFunction = (transform: CFrame, size: Vector3, drawTriangles: boolean) => void;
-type Shape3dFunction = (transform: CFrame, radius: number, length: number, subdivisions: number) => void;
-
-interface Drawable<Signature extends (...args: any) => any = () => void> {
-	Draw(...drawParameters: Parameters<Signature>): void;
+interface GizmoPropertyTable {
+	AlwaysOnTop: boolean;
+	Color3: Color3;
+	Destroy: boolean;
+	Enabled: boolean;
+	Transparency: number;
 }
 
 declare namespace Ceive {
+	export interface Drawable<TDrawArgs extends ReadonlyArray<unknown> = ReadonlyArray<unknown>> {
+		Draw(...parameters: TDrawArgs): void;
+		Create(...parameters: TDrawArgs): GizmoPropertyTable;
+	}
+	export type GetArgumentsFromDrawable<T extends Drawable> = T extends Drawable<infer U> ? U : never;
+
 	export interface ObjectMesh {
 		/**
 		 * Faces of the mesh.
@@ -32,43 +37,50 @@ declare namespace Ceive {
 	}
 
 	export const Arrow: Drawable<
-		(origin: Vector3, finish: Vector3, radius: number, length: number, subdivisions: number) => void
+		[origin: Vector3, finish: Vector3, radius: number, length: number, subdivisions: number]
 	>;
-	export const Box: Drawable<BoxFunction>;
-	export const Capsule: Drawable<Shape3dFunction>;
+	export const Box: Drawable<[transform: CFrame, size: Vector3, drawTriangles: boolean]>;
+	export const Capsule: Drawable<[transform: CFrame, radius: number, length: number, subdivisions: number]>;
+	export const CFrame: Drawable<[transform: CFrame, scale: number]>;
 	export const Circle: Drawable<
-		(transform: CFrame, radius: number, subdivisions: number, connectToStart?: boolean) => void
+		[transform: CFrame, radius: number, subdivisions: number, angle: number, connectToStart?: boolean]
 	>;
-	export const Cone: Drawable<Shape3dFunction>;
-	export const Cylinder: Drawable<Shape3dFunction>;
-	export const Line: Drawable<(transform: CFrame, length: number) => void>;
-	export const Mesh: Drawable<
-		(transform: CFrame, size: Vector3, vertices: ObjectMesh["v"], faces: ObjectMesh["f"]) => void
-	>;
-	export const Plane: Drawable<(position: Vector3, normal: Vector3, size: Vector3) => void>;
-	export const Ray: Drawable<(origin: Vector3, finish: Vector3) => void>;
-	export const Sphere: Drawable<(transform: CFrame, radius: number, subdivisions: number, angle: number) => void>;
-	export const Text: Drawable<(origin: Vector3, text: string, size?: number) => void>;
+	export const Cone: Drawable<[transform: CFrame, radius: number, length: number, subdivisions: number]>;
+	export const Cylinder: Drawable<[transform: CFrame, radius: number, length: number, subdivisions: number]>;
+	export const Line: Drawable<[transform: CFrame, length: number]>;
+	export const Mesh: Drawable<[transform: CFrame, size: Vector3, vertices: ObjectMesh["v"], faces: ObjectMesh["f"]]>;
+	export const Plane: Drawable<[position: Vector3, normal: Vector3, size: Vector3]>;
+	export const Ray: Drawable<[origin: Vector3, finish: Vector3]>;
+	export const RoundedFrustum: Drawable<[transform: CFrame, radius0: number, radius1: number, length: number, subdivisions: number]>;
+	export const Sphere: Drawable<[transform: CFrame, radius: number, subdivisions: number, angle: number]>;
+	export const Text: Drawable<[origin: Vector3, text: string, size?: number]>;
 	export const VolumeArrow: Drawable<
-		(
+		[
 			origin: Vector3,
 			finish: Vector3,
 			cylinderRadius: number,
 			coneRadius: number,
 			length: number,
 			useCylinder?: boolean,
-		) => void
+		]
 	>;
-	export const VolumeBox: Drawable<(transform: CFrame, size: Vector3) => void>;
-	export const VolumeCone: Drawable<(transform: CFrame, radius: number, length: number) => void>;
+	export const VolumeBox: Drawable<[transform: CFrame, size: Vector3]>;
+	export const VolumeCone: Drawable<[transform: CFrame, radius: number, length: number]>;
 	export const VolumeCylinder: Drawable<
-		(transform: CFrame, radius: number, length: number, innerRadius?: number, angle?: number) => void
+		[transform: CFrame, radius: number, length: number, innerRadius?: number, angle?: number]
 	>;
-	export const VolumeSphere: Drawable<(transform: CFrame, radius: number) => void>;
-	export const Wedge: Drawable<BoxFunction>;
+	export const VolumeSphere: Drawable<[transform: CFrame, radius: number]>;
+	export const Wedge: Drawable<[transform: CFrame, size: Vector3, drawTriangles: boolean]>;
 
 	export const ActiveRays: number;
 	export const ActiveInstances: number;
+	export let Enabled: boolean;
+
+	export const Styles: {
+		readonly Color: "Color3";
+		readonly Transparency: "Transparency";
+		readonly AlwaysOnTop: "AlwaysOnTop";
+	};
 
 	export function GetPoolSize(): number;
 
@@ -86,6 +98,15 @@ declare namespace Ceive {
 	export function ScheduleCleaning(): void;
 
 	export function Init(): void;
+
+	export function RemoveAdornments(): void;
+
+	// TODO: better types than this junk
+	export function TweenProperties(
+		properties: Record<string, unknown>,
+		goal: Record<string, unknown>,
+		tweenInfo: TweenInfo,
+	): () => void;
 }
 
 export = Ceive;
