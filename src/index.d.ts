@@ -51,7 +51,9 @@ declare namespace Ceive {
 	export const Mesh: Drawable<[transform: CFrame, size: Vector3, vertices: ObjectMesh["v"], faces: ObjectMesh["f"]]>;
 	export const Plane: Drawable<[position: Vector3, normal: Vector3, size: Vector3]>;
 	export const Ray: Drawable<[origin: Vector3, finish: Vector3]>;
-	export const RoundedFrustum: Drawable<[transform: CFrame, radius0: number, radius1: number, length: number, subdivisions: number]>;
+	export const RoundedFrustum: Drawable<
+		[transform: CFrame, radius0: number, radius1: number, length: number, subdivisions: number]
+	>;
 	export const Sphere: Drawable<[transform: CFrame, radius: number, subdivisions: number, angle: number]>;
 	export const Text: Drawable<[origin: Vector3, text: string, size?: number]>;
 	export const VolumeArrow: Drawable<
@@ -110,3 +112,4 @@ declare namespace Ceive {
 }
 
 export = Ceive;
+export as namespace Ceive;
