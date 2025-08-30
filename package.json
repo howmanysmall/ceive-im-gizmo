@@ -29,7 +29,7 @@
 	},
 	"scripts": {
 		"build": "rbxtsc",
-		"prepublishOnly": "pnpm run build",
+		"prepublishOnly": "bun run build",
 		"watch": "rbxtsc -w"
 	},
 	"types": "out/index.d.ts",
